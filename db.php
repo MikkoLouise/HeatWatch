@@ -1,16 +1,15 @@
 <?php
 // ============================================================
-// db.php — HeatWatch Database Connection and Schema Setup
-// This file connects to MySQL database using XAMPP
-// It also creates all tables automatically if they dont exist
+// db.php — HeatWatch Database Connection & Schema Setup
+// Hosted on InfinityFree — sql113.infinityfree.com
 // ============================================================
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');           // XAMPP default: empty password
+define('DB_PASS', '');
 define('DB_NAME', 'heatwatch');
 
-// Create connection (without DB first, to create DB if needed)
+// Create connection
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS);
 if ($conn->connect_error) {
     die("
@@ -80,10 +79,10 @@ body{
     <div class='err-msg'>" . htmlspecialchars($conn->connect_error) . "</div>
     <div class='err-label'>Troubleshooting Steps</div>
     <ul class='err-steps'>
-      <li>Open XAMPP Control Panel and make sure MySQL is running</li>
-      <li>Verify DB_HOST is set to <strong>localhost</strong></li>
-      <li>Check that DB_USER is <strong>root</strong> and DB_PASS is empty (XAMPP default)</li>
-      <li>Confirm port 3306 is not blocked or in use by another process</li>
+      <li>Check that DB_HOST is set to <strong>sql113.infinityfree.com</strong></li>
+      <li>Check that DB_USER is <strong>if0_41855973</strong> with no spaces</li>
+      <li>Make sure the database <strong>if0_41855973_heatwatch</strong> exists in InfinityFree control panel</li>
+      <li>Verify your DB_PASS password is correct</li>
     </ul>
   </div>
 </div>
@@ -92,8 +91,9 @@ body{
     ");
 }
 
-// Create database if it doesn't exist
-$conn->query("CREATE DATABASE IF NOT EXISTS " . DB_NAME . " CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+// Select the database
+// Note: InfinityFree does not allow creating databases via PHP
+// The database must already exist in the InfinityFree control panel
 $conn->select_db(DB_NAME);
 
 // ── TABLE: users ──────────────────────────────────────────────
